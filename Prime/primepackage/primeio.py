@@ -28,11 +28,16 @@ def write_primes(list_l, file_name):
         >>> write_primes(prime, 'output.csv')
     '''
     """
-
-    file_writer = open(file_name, 'w')
-    csv_writer = csv.writer(file_writer)
-    csv_writer.writerows([list_l])
-    file_writer.close()
+    try:
+        file_writer = open(file_name, 'w')
+        csv_writer = csv.writer(file_writer)
+        csv_writer.writerows([list_l])
+    except IOError as argument:
+        print("Error: can not write file", argument)
+    else:
+        print("Successfully wrote contents in the file ")
+    finally:
+        file_writer.close()
 
 
 def read_primes(file_name):
@@ -53,8 +58,12 @@ def read_primes(file_name):
     """
 
     list1 = []
-    file_reader = open(file_name, 'r')
-    text = csv.reader(file_reader)
-    for line in text:
-        list1.append(line)
-        return list1
+    try:
+        file_reader = open(file_name, 'r')
+        text = csv.reader(file_reader)
+    except IOError as argument:
+        print("Error: can not find file or read data", argument)
+    else:
+        for line in text:
+            list1.append(line)
+            return list1

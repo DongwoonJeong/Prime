@@ -11,12 +11,18 @@ def main():
     """Generate 100 prime numbers and output it into output.csv file
  
     """
+    try:
+        primes = get_prime(-5)
+        write_primes(primes, 'output.csv')
+        l = read_primes('output.csv')
+        print(l)
+    except Exception as err:
+        print("Catch error in main")
+        raise
 
 
-primes = get_prime(100)
-write_primes(primes, 'output.csv')
-l = read_primes('output.csv')
-print(l)
- 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as err:
+        print(err.args, err)

@@ -10,6 +10,8 @@ __version__ = "0.1"
 __email__ = "dwjeong@valdosta.edu"
 __status__ = "Individual project"
 
+from typing import List
+
 
 def is_prime(num_a):
     """read a natural number, return True if it is a prime number,
@@ -25,7 +27,8 @@ def is_prime(num_a):
         Boolean: if the number is prime or not.
 
     Raises:
-        IOError: io error.
+        ValueError: Raised when an operation or function receives an argument that has the right type
+        but an inappropriate value, and the situation is not described by a more precise exception such as IndexError
 
     Examples:
         >>> if is_prime(3);
@@ -34,6 +37,7 @@ def is_prime(num_a):
     """
     if num_a < 2:
         return False
+        raise Exception("Invalid input")
     for i in range(2, num_a):
         if num_a % i == 0:
             return False
@@ -51,10 +55,10 @@ def get_prime(num_b):
         num_b(int): input file name.
 
     Returns:
-        list: a list of strings.
+        list: a list of Integers.
 
     Raises:
-        IOError: io error.
+
 
     Examples:
         >>> primes = get_prime(100)
@@ -65,8 +69,10 @@ def get_prime(num_b):
     num = 0
     count = 0
     while count < num_b:
-        if is_prime(num):
+        if not is_prime(num):
+            raise ValueError("invalid")
             prime.append(num)
             count += 1
         num += 1
-    return prime
+    prime_int: List[int] = [int(i) for i in prime]
+    return prime_int
