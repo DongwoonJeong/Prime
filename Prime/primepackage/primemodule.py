@@ -35,8 +35,7 @@ def is_prime(num_a):
 
     '''
     """
-    if num_a < 2:
-        return False
+    if num_a < 0:
         raise Exception("Invalid input")
     for i in range(2, num_a):
         if num_a % i == 0:
